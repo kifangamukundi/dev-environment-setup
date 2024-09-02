@@ -1,0 +1,172 @@
+# Character module configuration
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
+
+# Username module configuration
+[username]
+style_user = "green bold"
+style_root = "red bold"
+format = "[$user]($style) "
+show_always = true
+
+# Hostname module configuration
+[hostname]
+format = 'on [$hostname](bold yellow) '
+trim_at = "."
+disabled = false
+
+# Directory module configuration
+[directory]
+truncation_length = 10
+truncate_to_repo = false
+
+# Command duration module configuration
+[cmd_duration]
+min_time = 4
+show_milliseconds = false
+
+# Git branch module configuration
+[git_branch]
+symbol = "🌿 "  # Leaf symbol for git branch
+disabled = true
+
+# Python module configuration
+[python]
+symbol = "🐍 "  # Snake symbol for Python
+format = 'via [${symbol}python (${version})]($style)'
+disabled = true
+
+# Node.js module configuration
+[nodejs]
+format = "via [🌐 Node.js $version](bold green) "
+detect_files = ["package.json"]
+disabled = true
+
+# Docker context module configuration
+[docker_context]
+symbol = "🐳"  # Whale symbol for Docker
+format = "via [$symbol$context]($style) "
+only_with_files = true
+detect_files = ["docker-compose.yml", "Dockerfile"]
+disabled = true
+
+# AWS module configuration
+[aws]
+symbol = "☁️ "  # Cloud symbol for AWS
+format = "[$symbol]($style) "
+disabled = true
+
+# Conda module configuration
+[conda]
+symbol = "🌀 "  # Cyclone symbol for Conda
+format = "[$symbol$env]($style) "
+disabled = true
+
+# Dart module configuration
+[dart]
+symbol = "💎 "  # Gem symbol for Dart
+format = "[$symbol]($style) "
+disabled = true
+
+# Elixir module configuration
+[elixir]
+symbol = "⚡ "  # Lightning bolt symbol for Elixir
+format = "[$symbol]($style) "
+disabled = true
+
+# Elm module configuration
+[elm]
+symbol = "🌳 "  # Tree symbol for Elm
+format = "[$symbol]($style) "
+disabled = true
+
+# Golang module configuration
+[golang]
+symbol = "🐹 "  # Hamster symbol for Go
+format = "[$symbol]($style) "
+disabled = true
+
+# Hg branch module configuration
+[hg_branch]
+symbol = "🌿 "  # Leaf symbol for Mercurial
+format = "[$symbol$branch]($style) "
+disabled = true
+
+# Java module configuration
+[java]
+symbol = "☕ "  # Coffee cup symbol for Java
+format = "[$symbol]($style) "
+disabled = true
+
+# Julia module configuration
+[julia]
+symbol = "🔬 "  # Microscope symbol for Julia
+format = "[$symbol]($style) "
+disabled = true
+
+# Memory usage module configuration
+[memory_usage]
+symbol = "🧠 "  # Brain symbol for memory usage
+format = "[$symbol]($style) "
+disabled = true
+
+# Nim module configuration
+[nim]
+symbol = "🦠 "  # Nut symbol for Nim
+format = "[$symbol]($style) "
+disabled = true
+
+# Nix Shell module configuration
+[nix_shell]
+symbol = "🐧 "  # Penguin symbol for Nix
+format = "[$symbol]($style) "
+disabled = true
+
+# Package module configuration
+[package]
+symbol = "📦 "  # Package symbol for packages
+format = "[$symbol$packages]($style) "
+disabled = true
+
+# Perl module configuration
+[perl]
+symbol = "🐫 "  # Camel symbol for Perl
+format = "[$symbol]($style) "
+disabled = true
+
+# PHP module configuration
+[php]
+symbol = "🐘 "  # Elephant symbol for PHP
+format = "[$symbol]($style) "
+disabled = true
+
+# Ruby module configuration
+[ruby]
+symbol = "💎 "  # Gem symbol for Ruby
+format = "[$symbol]($style) "
+disabled = true
+
+# Rust module configuration
+[rust]
+symbol = "🦀 "  # Crab symbol for Rust
+format = "[$symbol]($style) "
+disabled = true
+
+# Scala module configuration
+[scala]
+symbol = "♞ "  # Knight symbol for Scala
+format = "[$symbol]($style) "
+disabled = true
+
+# Shlvl module configuration
+[shlvl]
+symbol = "🔼 "  # Up arrow symbol for shell level
+format = "[$symbol$level]($style) "
+disabled = true
+
+# Swift module configuration
+[swift]
+symbol = "🌀 "  # Cyclone symbol for Swift
+format = "[$symbol]($style) "
+disabled = true
