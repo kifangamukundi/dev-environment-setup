@@ -35,7 +35,8 @@ opt.colorcolumn = "" -- Highlight column 80 for line length guide
 opt.backspace = "indent,eol,start" -- Allow backspace over everything in insert mode
 
 -- Clipboard
-opt.clipboard:append("unnamedplus") -- Use the system clipboard for all operations
+-- opt.clipboard:append("unnamedplus") -- Use the system clipboard for all operations
+opt.clipboard = ""  -- Disable automatic system clipboard integration
 
 -- Splits
 opt.splitright = true -- Vertical splits will automatically be to the right
