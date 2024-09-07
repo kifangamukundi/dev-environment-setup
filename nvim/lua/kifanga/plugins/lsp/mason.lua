@@ -28,16 +28,14 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "tsserver",
+        "eslint",
+        "emmet_ls",
         "html",
         "cssls",
         "tailwindcss",
-        "svelte",
         "lua_ls",
-        "graphql",
-        "emmet_ls",
-        "prismals",
-        "pyright",
       },
+      automatic_installation = true,
     })
 
     mason_tool_installer.setup({
