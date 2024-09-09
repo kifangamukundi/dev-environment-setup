@@ -46,16 +46,17 @@ opt.splitbelow = true -- Horizontal splits will automatically be below
 opt.swapfile = false -- Don't use swapfile
 
 -- Performance
-opt.lazyredraw = true -- Do not redraw while executing macros (good performance config)
-opt.updatetime = 300 -- Faster completion (4000ms default)
-opt.timeoutlen = 500 -- Time to wait for a mapped sequence to complete (in milliseconds)
+opt.lazyredraw = false -- Ensure instant feedback when typing
+opt.updatetime = 200 -- Faster completion
+opt.timeoutlen = 1000 -- Allow more time to complete key mappings
+opt.ttimeoutlen = 10 -- Faster response for terminal key mappings
 
 -- Undo
 opt.undofile = true -- Enable persistent undo
 opt.undodir = vim.fn.stdpath('cache') .. '/undo' -- Set undo directory
 
--- Mouse support
-opt.mouse = "a" -- Enable mouse support in all modes
+-- Mouse support (options available: empty, a, n, v, i, c, h, r)
+opt.mouse = ""
 
 -- Enhanced command-line completion
 opt.wildmenu = true -- Visual autocomplete for command menu
