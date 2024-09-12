@@ -41,9 +41,12 @@ keymap.set("n", "<leader>mj", "<C-w>j", { desc = "Move to the below split" })  -
 keymap.set("n", "<leader>mk", "<C-w>k", { desc = "Move to the above split" })  -- up
 keymap.set("n", "<leader>ml", "<C-w>l", { desc = "Move to the right split" })  -- right
 
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
-keymap.set("n", "<leader>ta", "<cmd>tabonly<CR>", { desc = "Close all tabs except the current one" })
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" })
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+-- Keymaps for buffer management
+keymap.set("n", "<leader>bo", "<cmd>enew<CR>", { desc = "Open new buffer" })
+keymap.set("n", "<leader>bx", "<cmd>bd<CR>", { desc = "Close current buffer" })
+keymap.set("n", "<leader>ba", "<cmd>%bd|e#|bd#<CR>", { desc = "Close all buffers except current one" })
+keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Go to next buffer" })
+keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Go to previous buffer" })
+-- Open the current buffer in a new buffer (equivalent of opening the same file in a new window in tabs)
+keymap.set("n", "<leader>bf", "<cmd>e %<CR>", { desc = "Open current buffer" })
+
