@@ -1,1 +1,0 @@
-require("kifanga.highlights.rainbow").setup()
