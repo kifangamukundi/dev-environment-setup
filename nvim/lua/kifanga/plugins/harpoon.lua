@@ -3,6 +3,7 @@ return {
   enabled = true,
   event = { "InsertEnter", "CmdLineEnter" },
   branch = "harpoon2",
+  commit = 'e76cb03', -- for when harpoon doesn't account for cd
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
