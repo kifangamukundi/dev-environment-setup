@@ -48,7 +48,7 @@ return {
       keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
       opts.desc = "Smart rename"
-      keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+      keymap.set("n", "<leader>ln", vim.lsp.buf.rename, opts)
 
       -- Diagnostics mappings
       opts.desc = "Show buffer diagnostics"
@@ -68,7 +68,7 @@ return {
       keymap.set("n", "<leader>dk", vim.lsp.buf.hover, opts)
 
       opts.desc = "Restart LSP"
-      keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+      keymap.set("n", "<leader>lp", ":LspRestart<CR>", opts)
 
       end,
     })
