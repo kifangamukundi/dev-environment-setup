@@ -14,6 +14,9 @@ return {
       ---Add a space between comment and the line
       padding = true,
 
+      ---Whether the cursor should stay at its position
+      sticky = true,
+
       ---Lines to be ignored while comment/uncomment.
       ignore = nil,
 
@@ -26,14 +29,24 @@ return {
 
       ---LHS of toggle mapping in NORMAL + VISUAL mode
       toggler = {
-        line = '<leader>gcc',  -- line-comment keymap
-        block = '<leader>gbc', -- block-comment keymap
+        line = '<leader>gcc',  -- Change to a different keymap
+        block = '<leader>gbc', -- Change to a different keymap
       },
 
       ---LHS of operator-pending mapping in NORMAL + VISUAL mode
       opleader = {
-        line = '<leader>gc',   -- leader for line-comment
-        block = '<leader>gb',  -- leader for block-comment
+        line = '<leader>gc',   -- Change to a different keymap
+        block = '<leader>gb',  -- Change to a different keymap
+      },
+
+      ---LHS of extra mappings
+      extra = {
+          ---Add comment on the line above
+          above = '<leader>gcO',
+          ---Add comment on the line below
+          below = '<leader>gco',
+          ---Add comment at the end of line
+          eol = '<leader>gcA',
       },
 
       ---Pre-hook for tsx, jsx, html files
