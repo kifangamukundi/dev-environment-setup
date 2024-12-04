@@ -25,26 +25,14 @@ return {
         })
       end
 
+      -- Use default Telescope picker
       require("telescope.pickers")
         .new({}, {
           prompt_title = "Harpoon",
           finder = make_finder(),
           previewer = false,
           sorter = conf.generic_sorter({}),
-          layout_strategy = "center",
-          layout_config = {
-            width = function(_, max_columns, _)
-              return math.min(max_columns, 80)
-            end,
-            height = function(_, _, max_lines)
-              return math.min(max_lines, 15)
-            end,
-          },
-          borderchars = {
-            prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
-            results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
-            preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-          },
+          -- Layout configuration is removed for default view
           attach_mappings = function(prompt_buffer_number, map)
             map("i", "<C-d>", function()
               local state = require("telescope.actions.state")
@@ -78,7 +66,6 @@ return {
       { "<leader>rp", function() harpoon:list():prev() end, desc = "Harpoon prev buffer" },
 
       -- Harpoon user interface with leader key
-      -- { "<leader>ru", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Harpoon Toggle Menu" },
       { "<leader>ra", function() harpoon:list():add() end, desc = "Harpoon add file" },
 
       -- Use Telescope as Harpoon user interface with leader key
