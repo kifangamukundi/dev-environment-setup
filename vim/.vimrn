@@ -1,0 +1,63 @@
+" Set leader key
+let mapleader = " "
+
+" General settings
+set nocompatible              " Disable compatibility with older Vim versions
+syntax on                     " Enable Syntax
+set clipboard=unnamedplus     " Enable system clipboard access
+set number                    " Show line numbers
+set relativenumber            " Show relative line numbers
+set cursorline                " Highlight the current line
+set expandtab                 " Use spaces instead of tabs
+set tabstop=4                 " Number of spaces for a tab
+set shiftwidth=4              " Indent size
+set smartindent               " Auto-indent new lines
+set ignorecase                " Case-insensitive search
+set smartcase                 " Case-sensitive if search contains uppercase
+set incsearch                 " Show matches while typing search
+set hlsearch                  " Highlight search matches
+set wrap                      " Wrap long lines
+set scrolloff=8               " Keep 8 lines visible when scrolling
+set hidden                    " Allow switching buffers without saving
+set wildmenu                  " Enable command-line completion
+set wildmode=longest:full     " Enhanced wildmenu completion
+set tags=./tags,tags          " Set tags file location
+
+" File browsing
+let g:netrw_banner = 0        " Disable banner
+let g:netrw_liststyle = 3     " Use tree-style view
+let g:netrw_browse_split = 0  " Open files in the same window
+let g:netrw_winsize = 25      " Set explorer window size
+nnoremap <leader>ef :Lexplore<CR>  " Toggle file explorer with <leader>e
+
+" Fuzzy file search
+set path=**
+" Ignore compiled files in search
+set wildignore+=*.o,*.obj,*.bin,*.exe  
+" Search for a file by name
+nnoremap <leader>ff :find<Space>
+
+" Tag jumping (requires ctags)
+nnoremap <leader>ft :tag<Space>
+nnoremap <leader>gd <C-]>        " Jump to the tag under the cursor (Go to definition)
+nnoremap <leader>u <C-t>         " Jump back to the previous location (Undo jump)
+
+" Colorscheme
+colorscheme desert
+
+" Clear search highlight
+nnoremap <leader>n :nohlsearch<CR>    
+
+" Buffer Navigation
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprev<CR>
+nnoremap <leader>bd :bdelete<CR>
+
+" Set the color for the current line number (line with cursor)
+highlight CursorLineNr ctermbg=NONE ctermfg=yellow guibg=NONE guifg=yellow
+
+" Set the color for all line numbers (magenta)
+highlight LineNr ctermbg=NONE ctermfg=magenta guibg=NONE guifg=magenta
+
+" Optional: Set a background color for the current line (the line with the cursor)
+highlight CursorLine ctermbg=darkgray guibg=#3e444b
