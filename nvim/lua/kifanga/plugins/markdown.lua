@@ -10,16 +10,19 @@ return {
 		end,
 	},
 	{
-		-- Live Markdown preview
 		"iamcco/markdown-preview.nvim",
-		build = "cd app && npm install",
+		build = function()
+		  vim.fn.system("git -C ~/.local/share/nvim/lazy/markdown-preview.nvim restore .")
+		  vim.fn.system("cd ~/.local/share/nvim/lazy/markdown-preview.nvim/app && npm install")
+		end,
 		ft = { "markdown" },
 		config = function()
-			vim.g.mkdp_auto_start = 0 -- Start preview manually
-			vim.g.mkdp_open_to_the_world = 0
-			vim.g.mkdp_browser = "" -- Use default browser
+		  vim.g.mkdp_auto_start = 0 -- Start preview manually
+		  vim.g.mkdp_open_to_the_world = 0
+		  vim.g.mkdp_browser = "" -- Use default browser
 		end,
-	},
+	  },
+	  
 	{
 		-- Better prose editing
 		"preservim/vim-pencil",
