@@ -5,7 +5,6 @@ return {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     "nvim-tree/nvim-web-devicons",
-    "folke/todo-comments.nvim",
   },
   config = function()
     local telescope = require("telescope")
@@ -56,7 +55,7 @@ return {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
             ["<C-j>"] = actions.move_selection_next, -- move to next result
             ["<C-a>"] = add_to_arglist,  -- add to arglist using independent function
-            ["<C-r>"] = remove_from_arglist, -- remove from arglist using independent function
+            ["<C-d>"] = remove_from_arglist, -- remove from arglist using independent function
           },
         },
       },
@@ -107,6 +106,5 @@ return {
     keymap.set("n", "<leader>fg", "<cmd>Telescope registers<CR>", { desc = "Find registers" })
     keymap.set("n", "<leader>fd", "<cmd>Telescope commands<CR>", { desc = "Find commands" })
     keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Find keymaps" })
-    keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
   end,
 }
