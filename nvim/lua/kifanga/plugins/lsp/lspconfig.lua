@@ -5,114 +5,97 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim", opts = {} },
+    "glepnir/lspsaga.nvim",
   },
   config = function()
-    -- import lspconfig plugin
     local lspconfig = require("lspconfig")
-
-    -- import mason_lspconfig plugin
     local mason_lspconfig = require("mason-lspconfig")
-
-    -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local lspsaga = require("lspsaga")
 
-    local keymap = vim.keymap -- for conciseness
+    lspsaga.setup({
+      ui = {
+        border = "rounded",
+        title = true,
+      },
+      symbol_in_winbar = {
+        enable = true,
+      },
+    })
+
+    local capabilities = cmp_nvim_lsp.default_capabilities()
 
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf, silent = true }
+        local keymap = vim.keymap
 
-       -- General LSP mappings
-      opts.desc = "Show LSP references"
-      keymap.set("n", "<leader>lr", "<cmd>Telescope lsp_references<CR>", opts)
+      --   To choose an option use ctrl + o or o
 
-      opts.desc = "Go to declaration"
-      keymap.set("n", "<leader>ld", vim.lsp.buf.declaration, opts)
+        local mappings = {
+          { "n", "<leader>lR", ":LspRestart<CR>", "Restart LSP" },
+      
+          -- Quickly navigate to places where a function, variable, or class is defined or used in your code.
+          { "n", "<leader>lf", "<cmd>Lspsaga finder<CR>", "LSP Finder" },
 
-      opts.desc = "Show LSP definitions"
-      keymap.set("n", "<leader>lf", "<cmd>Telescope lsp_definitions<CR>", opts) 
+          -- Quickly understand the purpose or usage of a function, class, or variable without leaving your current context.
+          { "n", "<leader>lh", "<cmd>Lspsaga hover_doc<CR>", "Hover Doc" },
 
-      opts.desc = "Show LSP implementations"
-      keymap.set("n", "<leader>li", "<cmd>Telescope lsp_implementations<CR>", opts)
+          -- Refactor your code by renaming symbols seamlessly without manually changing them everywhere
+          { "n", "<leader>lr", "<cmd>Lspsaga rename<CR>", "Rename" },
+      
+          -- Quickly apply fixes, such as importing a missing module, correcting a typo, or optimizing code.
+          { { "n", "v" }, "<leader>la", "<cmd>Lspsaga code_action<CR>", "Code Actions" },
 
-      opts.desc = "Show LSP type definitions"
-      keymap.set("n", "<leader>lt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+          { "n", "<leader>lB", "<cmd>Lspsaga show_buf_diagnostics<CR>", "Buffer Diagnostics" },
+          { "n", "<leader>lL", "<cmd>Lspsaga show_line_diagnostics<CR>", "Line Diagnostics" },
+      
+          { "n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Prev Diagnostic" },
+          { "n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Next Diagnostic" },
+      
+          -- Helps you track which parts of the code rely on the current function. 
+          { "n", "<leader>li", "<cmd>Lspsaga incoming_calls<CR>", "Incoming Calls" },
 
-      opts.desc = "Show LSP Symbols"
-      keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+          -- See what resources or methods the current function uses
+          { "n", "<leader>lo", "<cmd>Lspsaga outgoing_calls<CR>", "Outgoing Calls" },
 
-      opts.desc = "See available code actions"
-      keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+          -- Quickly inspect a function or variable definition without leaving your current place in the code
+          { "n", "<leader>ld", "<cmd>Lspsaga peek_definition<CR>", "Peek Definition" },
 
-      opts.desc = "Smart rename"
-      keymap.set("n", "<leader>ln", vim.lsp.buf.rename, opts)
+          -- Useful in strongly-typed languages like TypeScript or Go to inspect type details.
+          { "n", "<leader>lt", "<cmd>Lspsaga peek_type_definition<CR>", "Peek Type Definition" },
+      
+          { "n", "<leader>lT", "<cmd>Lspsaga outline<CR>", "Toggle Outline" },
+          { "n", "<leader>lw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", "Workspace Diagnostics" },
+      }        
 
-      -- Diagnostics mappings
-      opts.desc = "Show buffer diagnostics"
-      keymap.set("n", "<leader>db", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
-
-      opts.desc = "Show line diagnostics"
-      keymap.set("n", "<leader>dl", vim.diagnostic.open_float, opts)
-
-      opts.desc = "Go to previous diagnostic"
-      keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts)
-
-      opts.desc = "Go to next diagnostic"
-      keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
-
-      -- Hover & LSP control
-      opts.desc = "Show documentation for what is under cursor"
-      keymap.set("n", "<leader>dk", vim.lsp.buf.hover, opts)
-
-      opts.desc = "Restart LSP"
-      keymap.set("n", "<leader>lp", ":LspRestart<CR>", opts)
-
+        for _, map in ipairs(mappings) do
+          opts.desc = map[4]
+          keymap.set(map[1], map[2], map[3], opts)
+        end
       end,
     })
 
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
-
-    -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
-
     mason_lspconfig.setup_handlers({
-      -- default handler for installed servers
       function(server_name)
-        lspconfig[server_name].setup({
-          capabilities = capabilities,
-        })
-      end,      
-      ["emmet_ls"] = function()
-        -- configure emmet language server
-        lspconfig["emmet_ls"].setup({
-          capabilities = capabilities,
-          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
-        })
+        lspconfig[server_name].setup({ capabilities = capabilities })
       end,
       ["lua_ls"] = function()
-        -- configure lua server (with special settings)
         lspconfig["lua_ls"].setup({
           capabilities = capabilities,
           settings = {
             Lua = {
-              -- make the language server recognize "vim" global
-              diagnostics = {
-                globals = { "vim" },
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
+              diagnostics = { globals = { "vim" } },
+              completion = { callSnippet = "Replace" },
             },
           },
+        })
+      end,
+      ["emmet_ls"] = function()
+        lspconfig["emmet_ls"].setup({
+          capabilities = capabilities,
+          filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
         })
       end,
     })
