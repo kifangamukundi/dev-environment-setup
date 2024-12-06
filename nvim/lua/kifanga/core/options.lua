@@ -56,8 +56,8 @@ opt.timeoutlen = 1000 -- Allow more time to complete key mappings
 opt.ttimeoutlen = 10 -- Faster response for terminal key mappings
 
 -- Undo
-opt.undofile = true -- Enable persistent undo
-opt.undodir = vim.fn.stdpath('cache') .. '/undo' -- Set undo directory
+opt.undofile = false -- Enable persistent undo
+-- opt.undodir = vim.fn.stdpath('cache') .. '/undo' -- Set undo directory
 
 -- Mouse support (options available: empty, a, n, v, i, c, h, r)
 opt.mouse = ""
