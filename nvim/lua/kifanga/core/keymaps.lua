@@ -23,6 +23,14 @@ end
 
 -- Map <leader>cc to clear registers
 vim.keymap.set("n", "<leader>cr", ClearRegisters, { desc = "Clear Vim registers" })
+-- Remap <C-d> and <C-u> to include centering with zz
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+
+-- Searching and centering activate while on word with * or #
+vim.keymap.set("n", "n", "nzz", { desc = "Search moving forward or backward" })
+vim.keymap.set("n", "N", "Nzz", { desc = "Search moving forward or backward" })
+
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
