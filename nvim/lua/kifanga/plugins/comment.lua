@@ -11,51 +11,31 @@ return {
 
     -- Enable comment with custom configuration
     comment.setup({
-      ---Add a space between comment and the line
       padding = true,
-
-      ---Whether the cursor should stay at its position
       sticky = true,
-
-      ---Lines to be ignored while comment/uncomment.
       ignore = nil,
-
-      ---Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
       mappings = {
-        basic = true,  -- operator-pending mapping like gcc, gcb
-        extra = true,  -- extra mappings like gco, gcO
-        extended = false, -- extended mappings like g>, g<
+        basic = true,
+        extra = true,
+        extended = false,
       },
-
-      ---LHS of toggle mapping in NORMAL + VISUAL mode
       toggler = {
-        line = '<leader>gcc',  -- Change to a different keymap
-        block = '<leader>gbc', -- Change to a different keymap
+        line = '<leader>cl',  -- Toggle line comment
+        block = '<leader>cb', -- Toggle block comment
       },
-
-      ---LHS of operator-pending mapping in NORMAL + VISUAL mode
       opleader = {
-        line = '<leader>gc',   -- Change to a different keymap
-        block = '<leader>gb',  -- Change to a different keymap
+        line = '<leader>cl',  -- Line comments in Visual mode
+        block = '<leader>cb', -- Block comments in Visual mode
       },
-
-      ---LHS of extra mappings
       extra = {
-          ---Add comment on the line above
-          above = '<leader>gcO',
-          ---Add comment on the line below
-          below = '<leader>gco',
-          ---Add comment at the end of line
-          eol = '<leader>gcA',
+        above = '<leader>ck', -- Add comment on the line above
+        below = '<leader>cj', -- Add comment on the line below
+        eol = '<leader>ce',   -- Add comment at the end of line
       },
-
-      ---Pre-hook for tsx, jsx, html files
       pre_hook = ts_context_commentstring.create_pre_hook(),
-
-      ---Post-hook, called after commenting is done
       post_hook = nil,
     })
-
+    
     -- Set up ts-context-commentstring plugin
     require('ts_context_commentstring').setup()
   end,
