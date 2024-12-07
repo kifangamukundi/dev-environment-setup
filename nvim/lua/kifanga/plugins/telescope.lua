@@ -106,5 +106,11 @@ return {
     keymap.set("n", "<leader>fg", "<cmd>Telescope registers<CR>", { desc = "Find registers" })
     keymap.set("n", "<leader>fd", "<cmd>Telescope commands<CR>", { desc = "Find commands" })
     keymap.set("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Find keymaps" })
+    -- New Stuff but would expect to be done by lspsaga
+    keymap.set("n", "<leader>fS", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "LSP Symbols" })
+    keymap.set("n", "<leader>fT", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "LSP Types" })
+    keymap.set("n", "<leader>fI", "<cmd>Telescope lsp_implementations<CR>", { desc = "LSP Implementations" })
+    keymap.set("n", "<leader>fD", "<cmd>Telescope lsp_definitions<CR>", { desc = "LSP Definitions" })
+    keymap.set("n", "<leader>fR", "<cmd>Telescope lsp_references<CR>", { desc = "LSP References" })
   end,
 }
