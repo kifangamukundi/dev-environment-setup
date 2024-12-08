@@ -55,7 +55,7 @@ return {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
             ["<C-j>"] = actions.move_selection_next, -- move to next result
             ["<C-a>"] = add_to_arglist,  -- add to arglist using independent function
-            ["<C-d>"] = remove_from_arglist, -- remove from arglist using independent function
+            ["<C-r>"] = remove_from_arglist, -- remove from arglist using independent function
           },
         },
       },

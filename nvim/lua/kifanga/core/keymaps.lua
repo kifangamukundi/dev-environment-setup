@@ -91,17 +91,16 @@ keymap.set("n", "x", [["_x]], { desc = "Cut character without affecting yank reg
 keymap.set("v", "x", [["_x]], { desc = "Cut selection without affecting yank register" })
 
 -- Swap the current line with the one below
-keymap.set("n", "<leader>sK", ":m .+1<CR>==", { desc = "Swap line with the one below" })
+keymap.set("n", "<leader>sJ", ":m .+1<CR>==", { desc = "Swap line with the one below" })
 
 -- Swap the current line with the one above
-keymap.set("n", "<leader>sJ", ":m .-2<CR>==", { desc = "Swap line with the one above" })
+keymap.set("n", "<leader>sK", ":m .-2<CR>==", { desc = "Swap line with the one above" })
 
 -- Swap the selected lines (visual mode) with the ones below
-keymap.set("v", "<leader>sK", ":m '>+1<CR>gv=gv", { desc = "Swap selected lines with the ones below" })
+keymap.set("v", "<leader>sJ", ":m '>+1<CR>gv=gv", { desc = "Swap selected lines with the ones below" })
 
 -- Swap the selected lines (visual mode) with the ones above
-keymap.set("v", "<leader>sJ", ":m '<-2<CR>gv=gv", { desc = "Swap selected lines with the ones above" })
-
+keymap.set("v", "<leader>sK", ":m '<-2<CR>gv=gv", { desc = "Swap selected lines with the ones above" })
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
