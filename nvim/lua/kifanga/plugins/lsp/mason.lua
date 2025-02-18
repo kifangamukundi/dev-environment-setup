@@ -19,14 +19,16 @@ return {
 
     mason_lspconfig.setup({
       ensure_installed = {
-        "lua_ls",        -- Lua
-        "ts_ls",         -- JavaScript/TypeScript
-        "html",          -- HTML
-        "cssls",         -- CSS
-        "emmet_ls",      -- Emmet
-        "eslint",        -- ESLint
-        "tailwindcss",   -- Tailwind CSS
         "gopls",         -- Go language server
+        "pyright",       -- Python language server
+        "ts_ls",         -- TypeScript language server
+        "rust_analyzer", -- Rust language server
+        "clangd",        -- C/C++ language server
+        "lua_ls",        -- Lua language server
+        "eslint",        -- ESLint
+        "html",          -- HTML language server
+        "cssls",         -- CSS language server
+        "tailwindcss",   -- Tailwind CSS language server
       },
       automatic_installation = true,
     })

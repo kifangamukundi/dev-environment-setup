@@ -37,6 +37,7 @@ return {
         "gitignore",
         "vimdoc",
         "c",
+        "go",
       },
       incremental_selection = {
         enable = true,
