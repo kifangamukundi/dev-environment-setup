@@ -29,6 +29,7 @@ return {
         "html",          -- HTML language server
         "cssls",         -- CSS language server
         "tailwindcss",   -- Tailwind CSS language server
+        "svelte",
       },
       automatic_installation = true,
     })

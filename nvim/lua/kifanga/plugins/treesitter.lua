@@ -29,6 +29,7 @@ return {
         "yaml",
         "html",
         "css",
+        "svelte",
         "markdown",
         "markdown_inline",
         "bash",
