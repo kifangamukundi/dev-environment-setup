@@ -107,6 +107,9 @@ return {
             ["<"] = "prev_source",
             [">"] = "next_source",
             ["i"] = "show_file_details",
+            ["/"] = false,
+            ["f"] = false,
+            ["F"] = false,
           },
         },
         filesystem = {
