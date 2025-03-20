@@ -88,7 +88,7 @@ return {
               -- Force open the file with ! to override unsaved changes
               vim.cmd("edit! " .. selection.value)
             end
-          end)          
+          end)
           return true
         end,
       }):find()
@@ -112,5 +112,6 @@ return {
     keymap.set("n", "<leader>fI", "<cmd>Telescope lsp_implementations<CR>", { desc = "LSP Implementations" })
     keymap.set("n", "<leader>fD", "<cmd>Telescope lsp_definitions<CR>", { desc = "LSP Definitions" })
     keymap.set("n", "<leader>fR", "<cmd>Telescope lsp_references<CR>", { desc = "LSP References" })
+    keymap.set("n", "<leader>fL", "<cmd>Telescope loclist<CR>", { desc = "Find location List" })
   end,
 }

@@ -123,4 +123,63 @@ keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Go to next buffer" })
 keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Go to previous buffer" })
 keymap.set("n", "<leader>bf", "<cmd>saveas temp_duplicate | e %<CR>", { desc = "Duplicate current buffer as new file" })
 
+vim.api.nvim_create_autocmd("VimEnter", {
+  command = "clearjumps",
+})
+
 keymap.set("n", "<leader>cJ", "<cmd>clearjumps<CR>", { desc = "Clear Jump List" })
+
+-- Quick Fix Section (use with live grep)
+keymap.set('n', '<leader>qn', '<Cmd>try | cnext | catch | cfirst | catch | endtry<CR>', { desc = "Next quickfix item" })
+keymap.set('n', '<leader>qp', '<Cmd>try | cprevious | catch | clast | catch | endtry<CR>', { desc = "Previous quickfix item" })
+keymap.set('n', '<leader>qx', '<Cmd>cclose<CR>', { desc = "Close quickfix list" })
+keymap.set('n', '<leader>qo', '<Cmd>copen<CR>', { desc = "Open quickfix list" })
+
+keymap.set('n', '<leader>qc', function()
+  vim.fn.setqflist({})
+  print("Quickfix list cleared")
+end, { desc = "Clear quickfix list" })
+
+local keymap = vim.keymap
+
+-- Arglist (use with file find or directly inside the file)
+keymap.set('n', '<leader>ln', '<Cmd>try | args | next | catch | args | first | catch | endtry<CR>', { desc = "Next arglist item" })
+keymap.set('n', '<leader>lp', '<Cmd>try | args | previous | catch | args | last | catch | endtry<CR>', { desc = "Previous arglist item" })
+
+keymap.set('n', '<leader>lc', function()
+  vim.cmd("argdelete *")
+  print("Arglist cleared")
+end, { desc = "Clear arglist" })
+
+keymap.set('n', '<leader>la', function()
+    local current_file = vim.fn.expand("%")
+    local arglist = vim.fn.argv()
+    if not vim.tbl_contains(arglist, current_file) then
+        vim.cmd("argadd " .. vim.fn.escape(current_file, " "))
+        print("Added " .. current_file .. " to arglist")
+    else
+        print("File already in arglist")
+    end
+end, {desc = "Add current file to arglist"})
+
+keymap.set('n', '<leader>lr', function()
+    local current_file = vim.fn.expand("%")
+    local arglist = vim.fn.argv()
+    if vim.tbl_contains(arglist, current_file) then
+        vim.cmd("argdel " .. vim.fn.escape(current_file, " "))
+        print("Removed " .. current_file .. " from arglist")
+    else
+        print("File not in arglist")
+    end
+end, {desc = "Remove current file from arglist"})
+
+-- location list mostly for diagnostics
+keymap.set('n', '<leader>lN', '<Cmd>try | lnext | catch | lfirst | catch | endtry<CR>', { desc = "Next location list item" })
+keymap.set('n', '<leader>lP', '<Cmd>try | lprevious | catch | llast | catch | endtry<CR>', { desc = "Previous location list item" })
+keymap.set('n', '<leader>lX', '<Cmd>lclose<CR>', { desc = "Close location list" })
+keymap.set('n', '<leader>lO', '<Cmd>lopen<CR>', { desc = "Open location list" })
+
+-- keymap.set('n', '<leader>lC', function()
+--   vim.fn.setloclist(0, {}) -- Clear the location list
+--   print("Location list cleared")
+-- end, { desc = "Clear location list" })

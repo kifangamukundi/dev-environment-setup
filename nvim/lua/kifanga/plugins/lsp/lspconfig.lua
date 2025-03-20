@@ -49,6 +49,20 @@ return {
       end,
     })
 
+    -- location list staff
+    vim.api.nvim_create_autocmd("DiagnosticChanged", {
+      callback = function(args)
+        if not vim.g.quitting then
+          vim.diagnostic.setloclist({ open = false })
+        end
+      end,
+    })
+    vim.api.nvim_create_autocmd("QuitPre", {
+        callback = function()
+            vim.g.quitting = true
+        end,
+    })
+    
     mason_lspconfig.setup_handlers({
       function(server_name)
         lspconfig[server_name].setup({ capabilities = capabilities })
