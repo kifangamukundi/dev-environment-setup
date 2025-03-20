@@ -122,3 +122,5 @@ keymap.set("n", "<leader>ba", "<cmd>bufdo bd|enew<CR>", { desc = "Close all buff
 keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Go to next buffer" })
 keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Go to previous buffer" })
 keymap.set("n", "<leader>bf", "<cmd>saveas temp_duplicate | e %<CR>", { desc = "Duplicate current buffer as new file" })
+
+keymap.set("n", "<leader>cJ", "<cmd>clearjumps<CR>", { desc = "Clear Jump List" })
