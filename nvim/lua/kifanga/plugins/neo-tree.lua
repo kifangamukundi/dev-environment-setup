@@ -114,7 +114,7 @@ return {
         },
         filesystem = {
           filtered_items = {
-            visible = true, -- Show only modified files and files with errors
+            visible = true,
             hide_dotfiles = false,
             hide_gitignored = false,
             hide_hidden = false,

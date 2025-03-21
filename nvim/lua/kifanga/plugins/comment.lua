@@ -5,11 +5,9 @@ return {
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
-    -- Import Comment plugin safely
     local comment = require("Comment")
     local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
 
-    -- Enable comment with custom configuration
     comment.setup({
       padding = true,
       sticky = true,
@@ -20,23 +18,22 @@ return {
         extended = false,
       },
       toggler = {
-        line = '<leader>cl',  -- Toggle line comment
-        block = '<leader>cb', -- Toggle block comment
+        line = '<leader>cl',
+        block = '<leader>cb',
       },
       opleader = {
-        line = '<leader>cl',  -- Line comments in Visual mode
-        block = '<leader>cb', -- Block comments in Visual mode
+        line = '<leader>cl',
+        block = '<leader>cb',
       },
       extra = {
-        above = '<leader>ck', -- Add comment on the line above
-        below = '<leader>cj', -- Add comment on the line below
-        eol = '<leader>ce',   -- Add comment at the end of line
+        above = '<leader>ck',
+        below = '<leader>cj',
+        eol = '<leader>ce',
       },
       pre_hook = ts_context_commentstring.create_pre_hook(),
       post_hook = nil,
     })
     
-    -- Set up ts-context-commentstring plugin
     require('ts_context_commentstring').setup()
   end,
 }

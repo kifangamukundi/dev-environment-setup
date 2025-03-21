@@ -23,38 +23,36 @@ return {
       ['R']  = 'Overwriting',    -- Replace mode
     }
 
-    -- Define custom mode function to show funny names for modes
     local function custom_mode()
       local mode_code = vim.api.nvim_get_mode().mode
-      return mode_map[mode_code] or mode_code -- Use the custom name or fallback to default if not mapped
+      return mode_map[mode_code] or mode_code
     end
 
-    -- Set up lualine with the custom mode function
     lualine.setup({
       options = {
-        icons_enabled = true,  -- Enable icons if desired
-        theme = "papercolor_dark",  -- Set the lualine theme to Catppuccin
-        component_separators = { left = '', right = '' }, -- Default separators
-        section_separators = { left = '', right = '' }, -- Default separators
+        icons_enabled = true,
+        theme = "papercolor_dark",
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
       },
       sections = {
-        lualine_a = { custom_mode },  -- Use the custom mode names
-        lualine_b = { 'filename' },   -- Show only the name of the current buffer (file)
-        lualine_c = { 'filetype' },   -- Show filetype
-        lualine_x = {},               -- Empty section
-        lualine_y = { 'progress' },   -- Show progress through the file
-        lualine_z = { 'location' },   -- Show the current cursor location
+        lualine_a = { custom_mode },
+        lualine_b = { 'filename' },
+        lualine_c = { 'filetype' },
+        lualine_x = {},
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
       },
       inactive_sections = {
         lualine_a = {},
-        lualine_b = { 'filename' },  -- Show the current file name in inactive windows
-        lualine_c = { 'filetype' },  -- Show filetype
+        lualine_b = { 'filename' },
+        lualine_c = { 'filetype' },
         lualine_x = {},
         lualine_y = {},
         lualine_z = {},
       },
-      tabline = {},  -- No tabline to keep it minimal
-      extensions = {},  -- No additional extensions
+      tabline = {},
+      extensions = {},
     })
   end,
 }

@@ -24,7 +24,6 @@ end
 -- Map <leader>cc to clear registers
 vim.keymap.set("n", "<leader>cr", ClearRegisters, { desc = "Clear Vim registers" })
 
--- Remap <C-d> and <C-u> to include centering with zz
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
 
@@ -54,52 +53,26 @@ vim.keymap.set("n", "<leader>ri", function()
   end
 end, { desc = "Replace word (case-insensitive)" })
 
--- Move the current line up
 keymap.set("n", "<leader>mK", ":m .-2<CR>==", { desc = "Move line up" })
-
--- Move the current line down
 keymap.set("n", "<leader>mJ", ":m .+1<CR>==", { desc = "Move line down" })
-
--- Move selected lines up
 keymap.set("v", "<leader>mK", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up" })
-
--- Move selected lines down
 keymap.set("v", "<leader>mJ", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down" })
 
--- Duplicate the current line up
 keymap.set("n", "<leader>dK", "yypk", { desc = "Duplicate line up" })
-
--- Duplicate the current line down
 keymap.set("n", "<leader>dJ", "yyp", { desc = "Duplicate line down" })
-
--- Duplicate selected lines up
 keymap.set("v", "<leader>dK", ":t '<-1<CR>gv=gv", { desc = "Duplicate selected lines up" })
-
--- Duplicate selected lines down
 keymap.set("v", "<leader>dJ", ":t '>+1<CR>gv=gv", { desc = "Duplicate selected lines down" })
 
--- Delete without affecting yank register
 keymap.set("n", "d", [["_d]], { desc = "Delete without affecting yank register" })
 keymap.set("v", "d", [["_d]], { desc = "Delete without affecting yank register" })
-
--- Change without affecting yank register
 keymap.set("n", "c", [["_c]], { desc = "Change without affecting yank register" })
 keymap.set("v", "c", [["_c]], { desc = "Change without affecting yank register" })
-
--- Cut (x) without affecting yank register
 keymap.set("n", "x", [["_x]], { desc = "Cut character without affecting yank register" })
 keymap.set("v", "x", [["_x]], { desc = "Cut selection without affecting yank register" })
 
--- Swap the current line with the one below
 keymap.set("n", "<leader>sJ", ":m .+1<CR>==", { desc = "Swap line with the one below" })
-
--- Swap the current line with the one above
 keymap.set("n", "<leader>sK", ":m .-2<CR>==", { desc = "Swap line with the one above" })
-
--- Swap the selected lines (visual mode) with the ones below
 keymap.set("v", "<leader>sJ", ":m '>+1<CR>gv=gv", { desc = "Swap selected lines with the ones below" })
-
--- Swap the selected lines (visual mode) with the ones above
 keymap.set("v", "<leader>sK", ":m '<-2<CR>gv=gv", { desc = "Swap selected lines with the ones above" })
 
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })

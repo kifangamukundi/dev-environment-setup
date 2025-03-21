@@ -1,6 +1,5 @@
 return {
 	{
-		-- Markdown syntax highlighting
 		"plasticboy/vim-markdown",
 		ft = { "markdown" },
 		config = function()
@@ -19,11 +18,10 @@ return {
 		ft = { "markdown" },
 	},
 	{
-		-- Better prose editing
 		"preservim/vim-pencil",
 		ft = { "markdown" },
 		config = function()
-			vim.cmd("PencilSoft") -- Enable soft line wrapping
+			vim.cmd("PencilSoft")
 		end,
 	},
 }
