@@ -1,6 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
+  dependencies = { "nvim-tree/nvim-web-devicons"},
   config = function()
     local lualine = require("lualine")
 
@@ -33,7 +33,7 @@ return {
     lualine.setup({
       options = {
         icons_enabled = true,  -- Enable icons if desired
-        theme = "catppuccin",  -- Set the lualine theme to Catppuccin
+        theme = "papercolor_dark",  -- Set the lualine theme to Catppuccin
         component_separators = { left = '', right = '' }, -- Default separators
         section_separators = { left = '', right = '' }, -- Default separators
       },

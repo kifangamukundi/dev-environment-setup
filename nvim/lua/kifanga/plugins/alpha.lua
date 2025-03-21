@@ -20,7 +20,7 @@ return {
 
     -- Set menu
     dashboard.section.buttons.val = {
-      dashboard.button("SPC wr", "󰁯  > Restore Session For Current Directory", "<cmd>SessionRestore<CR>"),
+      dashboard.button("SPC sr", "󰁯  > Restore Session For Current Directory", "<cmd>SessionRestore<CR>"),
     }
 
     -- Send config to alpha

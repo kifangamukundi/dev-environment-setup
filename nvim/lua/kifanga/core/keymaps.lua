@@ -118,7 +118,7 @@ keymap.set("n", "<leader>ml", "<C-w>l", { desc = "Move to the right split" })
 -- Keymaps for buffer management
 keymap.set("n", "<leader>bo", "<cmd>enew<CR>", { desc = "Open new buffer" })
 keymap.set("n", "<leader>bx", "<cmd>bd<CR>", { desc = "Close current buffer" })
-keymap.set("n", "<leader>ba", "<cmd>bufdo bd|enew<CR>", { desc = "Close all buffers and open a blank buffer" })
+keymap.set("n", "<leader>bc", "<cmd>bufdo bd|enew<CR>", { desc = "Close all buffers and open a blank buffer" })
 keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Go to next buffer" })
 keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Go to previous buffer" })
 keymap.set("n", "<leader>bf", "<cmd>saveas temp_duplicate | e %<CR>", { desc = "Duplicate current buffer as new file" })
