@@ -178,8 +178,3 @@ keymap.set('n', '<leader>lN', '<Cmd>try | lnext | catch | lfirst | catch | endtr
 keymap.set('n', '<leader>lP', '<Cmd>try | lprevious | catch | llast | catch | endtry<CR>', { desc = "Previous location list item" })
 keymap.set('n', '<leader>lX', '<Cmd>lclose<CR>', { desc = "Close location list" })
 keymap.set('n', '<leader>lO', '<Cmd>lopen<CR>', { desc = "Open location list" })
-
--- keymap.set('n', '<leader>lC', function()
---   vim.fn.setloclist(0, {}) -- Clear the location list
---   print("Location list cleared")
--- end, { desc = "Clear location list" })

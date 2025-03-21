@@ -19,16 +19,16 @@ return {
 
     mason_lspconfig.setup({
       ensure_installed = {
-        "gopls",         -- Go language server
-        "pyright",       -- Python language server
-        "ts_ls",         -- TypeScript language server
-        "rust_analyzer", -- Rust language server
-        "clangd",        -- C/C++ language server
-        "lua_ls",        -- Lua language server
-        "eslint",        -- ESLint
-        "html",          -- HTML language server
-        "cssls",         -- CSS language server
-        "tailwindcss",   -- Tailwind CSS language server
+        "gopls",
+        "pyright",
+        "ts_ls",
+        "rust_analyzer",
+        "clangd",
+        "lua_ls",
+        "eslint",
+        "html",
+        "cssls",
+        "tailwindcss",
         "svelte",
       },
       automatic_installation = true,

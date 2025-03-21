@@ -16,16 +16,16 @@ return {
 
     -- Configure diagnostics
     vim.diagnostic.config({
-      virtual_text = true,  -- To show inline diagnostics
-      signs = true,         -- To show signs (indicators) in the gutter
-      update_in_insert = true,  -- Update diagnostics while typing
-      underline = true,     -- Underline errors/warnings
+      virtual_text = true,
+      signs = true,
+      update_in_insert = true,
+      underline = true,
       float = {
-        border = "rounded",  -- You can change the border style (rounded, single, etc.)
-        source = "always",   -- Show the source of the error (e.g., LSP)
-        header = "",         -- Can be left empty or customized
-        max_width = 120,     -- Set a max width for the float window, you can adjust this value
-        max_height = 15,     -- Optionally, you can limit the height as well
+        border = "rounded",
+        source = "always",
+        header = "",
+        max_width = 120,
+        max_height = 15,
       },
     })
     
@@ -35,11 +35,27 @@ return {
       callback = function(ev)
         local opts = { buffer = ev.buf, silent = true }
         local keymap = vim.keymap
-
+        
         local mappings = {
-          -- add keymaps here later
-          -- Ctrl-o: Go to the previous position in the buffer history (backwards).
-          -- Ctrl-i: Go to the next position in the buffer history (forwards).
+          -- Jumplist control o and control i
+          -- Taglist control t
+          { 'n', '<leader>dd', vim.lsp.buf.declaration, "Go to Declaration" },
+          { 'n', '<leader>df', vim.lsp.buf.definition, "Go to Definition" },
+          { 'n', '<leader>dt', vim.lsp.buf.type_definition, "Go to Type Definition" },
+          { 'n', '<leader>K', vim.lsp.buf.hover, "Hover Documentation" },
+          { 'n', '<leader>di', vim.lsp.buf.implementation, "Go to Implementation" },
+
+          -- This opens a quick fix list that we can use for all the references
+          { 'n', '<leader>dr', vim.lsp.buf.references, "Go to References" },
+          { 'n', '<leader>dn', vim.diagnostic.goto_next, "Go to next Diagnostic" },
+          { 'n', '<leader>dp', vim.diagnostic.goto_prev, "Go to previous Diagnostic" },
+
+          { 'n', '<leader>ds', vim.lsp.buf.signature_help, "Signature Help" },
+          { 'n', '<leader>da', vim.lsp.buf.add_workspace_folder, "Add Workspace Folder" },
+          { 'n', '<leader>dx', vim.lsp.buf.remove_workspace_folder, "Remove Workspace Folder" },
+          { 'n', '<leader>do', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, "List Workspace Folders" },
+          { 'n', '<leader>dR', vim.lsp.buf.rename, "Rename" },
+          { { 'n', 'v' }, '<leader>dA', vim.lsp.buf.code_action, "Code Action" },
         }        
 
         for _, map in ipairs(mappings) do
@@ -67,7 +83,6 @@ return {
       function(server_name)
         lspconfig[server_name].setup({ capabilities = capabilities })
       end,
-      -- Add gopls configuration
       ["gopls"] = function()
         lspconfig.gopls.setup({
           capabilities = capabilities,
@@ -86,8 +101,8 @@ return {
           end,
           settings = {
             gopls = {
-              gofumpt = true, -- Use gofumpt for stricter formatting
-              staticcheck = true, -- Enable static analysis
+              gofumpt = true,
+              staticcheck = true,
               analyses = {
                 unusedparams = true,
               },
@@ -101,7 +116,7 @@ return {
           settings = {
             python = {
               analysis = {
-                typeCheckingMode = "basic",  -- Can be "basic" or "strict"
+                typeCheckingMode = "basic",
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
               },
@@ -144,7 +159,8 @@ return {
           capabilities = capabilities,
           settings = {
             Lua = {
-              diagnostics = { globals = { "vim" } },  -- Recognize vim global in Neovim Lua configs
+              -- Recognize vim global in Neovim Lua configs
+              diagnostics = { globals = { "vim" } },  
               workspace = { library = vim.api.nvim_get_runtime_file("", true) },
             },
           },
@@ -189,27 +205,24 @@ return {
           capabilities = capabilities,
           settings = {
             tailwindCSS = {
-              validate = true,  -- Enable validation for Tailwind classes
+              validate = true,
               includeLanguages = {
-                css = "css",      -- Include CSS files
-                html = "html",    -- Include HTML files
-                javascript = "javascript",  -- Include JS files
-                typescript = "typescript",  -- Include TypeScript files
-                -- Add more languages if needed (e.g., JSX, TSX)
+                css = "css",
+                html = "html",
+                javascript = "javascript",
+                typescript = "typescript",
               },
             },
           },
         })
       end,
       ["svelte"] = function()
-        -- configure svelte server
         lspconfig["svelte"].setup({
           capabilities = capabilities,
           on_attach = function(client, bufnr)
             vim.api.nvim_create_autocmd("BufWritePost", {
               pattern = { "*.js", "*.ts" },
               callback = function(ctx)
-                -- Here use ctx.match instead of ctx.file
                 client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
               end,
             })
